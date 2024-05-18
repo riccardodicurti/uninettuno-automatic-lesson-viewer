@@ -1,11 +1,61 @@
 window.addEventListener('load', function () {
-  window.setInterval( function(){
-    clickon_next_video();
-  }, 30000 );
+
+  var currentLocation = window.location.href;
+
+  if ( currentLocation.includes( "cyberspaziomaterialedidattico" ) ) {
+    create_download_video();
+    // create_download_video_two();
+  
+    window.setInterval( function(){
+      click_on_next_video();
+    }, 30000 );
+  }
+
+  if ( currentLocation.includes( ".mp4" ) ) {
+
+  }
+
 });
 
+function create_download_video() {
+  var video = document.getElementById("videojsplayer_html5_api");
+  var url = video.src;
+  var filename = url.split('/').pop();
 
-function clickon_next_video() {
+  if ( url.endsWith( '.mp4' ) ) {
+    var a = document.createElement('a');
+    a.setAttribute( 'href', url );
+    a.setAttribute( 'download', filename );
+    a.setAttribute( 'target', '_blank' );
+    a.innerHTML = 'download';
+    document.getElementById("tdVideoContainer").appendChild(a);
+
+    var param = {
+      url: url,
+      filename: filename
+    };
+
+    chrome.runtime.sendMessage( param );
+  }
+}
+
+// function create_download_video_two() {
+//   var video = document.getElementById("videojsplayer_html5_api");
+//   var url = video.src;
+
+//   console.log( url );
+
+//   if ( url.endsWith( '.mp4' ) ) {
+//     var iframe = document.createElement('iframe');
+//     iframe.style.display = 'none';
+//     iframe.setAttribute( 'id', 'my_iframe' );
+//     iframe.setAttribute( 'sandbox', 'allow-scripts allow-downloads' );
+//     document.getElementById("tdVideoContainer").appendChild( iframe );
+//     iframe.src = url;
+//   }
+// }
+
+function click_on_next_video() {
   var video = document.getElementById("videojsplayer_html5_api");
 
   var duration = video.duration

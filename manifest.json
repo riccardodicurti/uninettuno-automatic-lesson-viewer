@@ -2,6 +2,13 @@
   "name": "Uninettuno - automatic lesson viewer",
   "version": "1.0",
   "manifest_version": 3,
+  "permissions": [
+    "downloads",
+    "background"
+  ],
+  "background": {
+    "service_worker": "/background.js"
+  },
   "content_scripts": [
     {
       "matches": [
