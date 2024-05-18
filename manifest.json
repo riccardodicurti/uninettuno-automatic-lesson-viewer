@@ -1,6 +1,6 @@
 {
   "name": "Uninettuno - automatic lesson viewer",
-  "version": "1.3",
+  "version": "1.0",
   "manifest_version": 3,
   "content_scripts": [
     {
